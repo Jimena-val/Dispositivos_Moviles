@@ -62,7 +62,6 @@ fun ProductView(producto: ProductModel, selected:()-> Unit){ //selected:() -> Un
                         }else  {
                             textocarrito = "Producto agregado al carrito"
                         }
-
                     }, colors = ButtonDefaults.buttonColors(
                         containerColor = Color.DarkGray,
                         contentColor = Color.Black)) {Text("Agregar al carrito", color = Color.White)
@@ -73,5 +72,4 @@ fun ProductView(producto: ProductModel, selected:()-> Unit){ //selected:() -> Un
             }
         }
     }
-
 }
