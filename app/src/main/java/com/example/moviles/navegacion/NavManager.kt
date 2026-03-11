@@ -31,7 +31,7 @@ data class ReportModel(val nombreseccion: String, val numeroseccion: Int, val no
 
 fun NavManager() {
     val navcontroler = rememberNavController()
-    NavHost(navcontroler, startDestination = Home, modifier = Modifier.padding(innerPadding)){
+    NavHost(navcontroler, startDestination = Home, modifier = Modifier.padding()){
         composable<Home> {
             HomeView(navcontroler)
         }
