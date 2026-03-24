@@ -3,7 +3,9 @@ package com.example.moviles.corrutinas
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -14,14 +16,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 
 @Composable
-@Preview(showBackground = true)
-fun WinnerPreview(){
-    WinnerView(studentsVM = StudentsViewModel())
-}
-@Composable
-fun WinnerView(studentsVM: StudentsViewModel) {
+fun WinnerView(studentsVM : StudentsViewModel){
     var nombre by remember { mutableStateOf("") }
     Column(modifier = Modifier
         .fillMaxSize(),
@@ -38,5 +36,11 @@ fun WinnerView(studentsVM: StudentsViewModel) {
             Text(text="Comenzar")
         }
         Text(text= "El ganador es...${studentsVM.winner}")
+    }
+    if(studentsVM.isLoading){
+        CircularProgressIndicator(modifier = Modifier.size(64.dp))
+        Text(text="Cargando...")
+    }else {
+        Text(text="El ganador es...${studentsVM.winner}")
     }
 }
