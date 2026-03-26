@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
@@ -22,12 +23,19 @@ class Preferencias(private val contexto: Context) {
     val age: Flow<Int> = contexto.dataStore.data.map { preferences ->
         preferences[AGE] ?: 0
     }
-    val name: Flow<Int> = contexto.dataStore.data.map { preferences ->
-        preferences[NAME] ?: 0
+    val name: Flow<String> = contexto.dataStore.data.map { preferences ->
+        preferences[NAME] ?: "Sin nombre asignado"
     }
-    val hasPet: Flow<Int> = contexto.dataStore.data.map { preferences ->
-        preferences[HASPET] ?: 0
+    val hasPet: Flow<Boolean> = contexto.dataStore.data.map { preferences ->
+        preferences[HASPET] ?: false
     }
 
-
+    //Guardar los datos
+    suspend fun guardarDatosPersonal(){
+        contexto.dataStore.edit { settings ->
+            settings[AGE] = 23
+            settings[NAME] = "Juan"
+            settings[HASPET] = true
+        }
+    }
 }
