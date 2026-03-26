@@ -31,11 +31,21 @@ class Preferencias(private val contexto: Context) {
     }
 
     //Guardar los datos
-    suspend fun guardarDatosPersonal(){
+    suspend fun guardarDatosPersonal(edad: Int, nombre: String, mascota: Boolean){
         contexto.dataStore.edit { settings ->
-            settings[AGE] = 23
-            settings[NAME] = "Juan"
-            settings[HASPET] = true
+            settings[AGE] = edad
+            settings[NAME] = nombre
+            settings[HASPET] = mascota
+        }
+    }
+    suspend fun borrarConfiguraciones(){
+        contexto.dataStore.edit { settings ->
+            settings.remove(AGE)
+            settings.remove(NAME)
+            settings.remove(HASPET)
+
+            //o si queremos borrar todos
+            //settings.clear()
         }
     }
 }
