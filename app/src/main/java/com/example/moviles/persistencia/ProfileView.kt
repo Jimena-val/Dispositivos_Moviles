@@ -41,6 +41,7 @@ fun ProfileView(){
         horizontalAlignment = Alignment.CenterHorizontally
     ){
         Text(text="Mi Perfil")
+        Text(text="Datos guardados hasta ahora son: ${nombreGuardado.value}, ${edadGuardada.value} y ${mascotaGuardada.value}")
         TextField(
             value = nombre,
             onValueChange = {nombre = it},
