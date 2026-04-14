@@ -12,6 +12,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.moviles.api.DogView
+import com.example.moviles.api.DogViewModel
 import com.example.moviles.lisas.ListView
 import com.example.moviles.persistencia.ProfileView
 import com.example.moviles.ui.theme.MovilesTheme
@@ -23,8 +25,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MovilesTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) {
-                    ProfileView()
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    val dogViewModel = DogViewModel()
+                    DogView(dogViewModel)
                 }
             }
         }
